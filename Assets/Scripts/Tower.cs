@@ -36,21 +36,13 @@ public class Tower : MonoBehaviour
         Destroy(gameObject);
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void addEnemy(Enemy enemy)
     {
-        Enemy enemy = other.GetComponent<Enemy>();
-        if(enemy != null)
-        {
-            enemies.Add(enemy);
-        }
+        enemies.Add(enemy);
     }
 
-    private void OnTriggerExit(Collider other)
+    public void removeEnemy(Enemy enemy)
     {
-        Enemy enemy = other.GetComponent<Enemy>();
-        if (enemy != null)
-        {
-            enemies.Remove(enemy);
-        }
+        enemies.Remove(enemy);
     }
 }
