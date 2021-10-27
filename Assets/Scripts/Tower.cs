@@ -13,6 +13,7 @@ public class Tower : MonoBehaviour
 
     private List<Enemy> enemies { get; set; } = null;
 
+    private bool canShoot { get; set; } = true;
 
 
     private void Start()
@@ -22,7 +23,23 @@ public class Tower : MonoBehaviour
 
     private void Update()
     {
-        
+        if(!canShoot)
+        {
+            currentFireRate += Time.deltaTime;
+            if(currentFireRate >= fireRate)
+            {
+                currentFireRate = 0;
+                canShoot = true;
+            }
+            return;
+        }
+
+        if(enemies != null && enemies.Count > 0)
+        {
+            Destroy(enemies[0].gameObject);
+            enemies.RemoveAt(0);
+            canShoot = false;
+        }
     }
 
     public void Upgrade()
